@@ -10,9 +10,12 @@ func game_start():
 	var rand_value_x = coinflipx[randi() % coinflipx.size()]
 	var coinflip_y = rand_range(-200, 200)
 	print(coinflip_y)
-	Vars.velocity = Vector2(rand_value_x, coinflip_y)	
+	Vars.velocity = Vector2(rand_value_x, coinflip_y)
+	
+func game_end(): #TODO: Determin the winner and end the game
+	pass	
 
-func _on_Player1Net_body_entered(body: Node) -> void:
+func _on_Player1Net_body_entered(_body: Node) -> void:
 	$Enviornment/score.play()
 	Vars.P2Score += 1
 	$Enviornment/Player2Score.text = str(Vars.P2Score)
@@ -20,7 +23,7 @@ func _on_Player1Net_body_entered(body: Node) -> void:
 	Vars.velocity = Vector2(0, 0)
 	$Ball.position = Vector2(950, 420)
 	
-func _on_Player2Net_body_entered(body: Node) -> void:
+func _on_Player2Net_body_entered(_body: Node) -> void:
 	$Enviornment/score.play()
 	Vars.P1Score += 1
 	$Enviornment/Player1Score.text = str(Vars.P1Score)

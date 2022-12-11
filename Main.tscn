@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Paddle.gd" type="Script" id=2]
@@ -9,15 +9,17 @@
 [ext_resource path="res://Main.gd" type="Script" id=7]
 [ext_resource path="res://KickoffUI.gd" type="Script" id=8]
 [ext_resource path="res://sounds/score.wav" type="AudioStream" id=9]
-[ext_resource path="res://sounds/bounce.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/beep.wav" type="AudioStream" id=10]
 [ext_resource path="res://art/background.png" type="Texture" id=11]
+[ext_resource path="res://sounds/music.mp3" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 246.948, 4.58996 )
+extents = Vector2( 246.691, 4.58996 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 76
-extra_spacing_char = 20
+outline_size = 5
+extra_spacing_char = 70
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -27,7 +29,7 @@ outline_color = Color( 0, 0.905882, 1, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 18.5, 546.5 )
+extents = Vector2( 18.5, 532.75 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 7 )
@@ -53,21 +55,22 @@ rect_scale = Vector2( 1, 29.12 )
 color = Color( 1, 1, 1, 0.0862745 )
 
 [node name="TopWall" type="StaticBody2D" parent="Enviornment"]
-position = Vector2( 2, 1 )
+position = Vector2( -8, -1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enviornment/TopWall"]
-position = Vector2( 958.5, 2.71483 )
+position = Vector2( 968.5, 2.71483 )
 scale = Vector2( 3.88948, 2.2408 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Enviornment/TopWall"]
-position = Vector2( 958, 4 )
+position = Vector2( 968, 4 )
 scale = Vector2( 1, 0.52 )
 texture = ExtResource( 4 )
 
 [node name="BottomWall" type="StaticBody2D" parent="Enviornment"]
-position = Vector2( 1919, 1076 )
+position = Vector2( 1918, 1077 )
 rotation = -3.14159
+scale = Vector2( 1, 0.64002 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enviornment/BottomWall"]
 position = Vector2( 958.5, 2.71483 )
@@ -115,20 +118,23 @@ align = 1
 valign = 1
 
 [node name="Player1Net" type="Area2D" parent="Enviornment"]
+position = Vector2( -10, 0 )
+scale = Vector2( 0.56, 1 )
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enviornment/Player1Net"]
-position = Vector2( -0.5, 536.5 )
+position = Vector2( -0.499998, 535.25 )
 shape = SubResource( 4 )
 
 [node name="Player2Net" type="Area2D" parent="Enviornment"]
-position = Vector2( 1919, 5 )
+position = Vector2( 1927, 5 )
+scale = Vector2( 0.36, 1 )
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enviornment/Player2Net"]
-position = Vector2( -0.5, 536.5 )
+position = Vector2( -0.5, 529 )
 shape = SubResource( 4 )
 
 [node name="score" type="AudioStreamPlayer2D" parent="Enviornment"]
@@ -167,6 +173,10 @@ margin_bottom = 117.0
 rect_scale = Vector2( 4, 3 )
 action_mode = 0
 text = "Start"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
 
 [connection signal="body_entered" from="Enviornment/Player1Net" to="." method="_on_Player1Net_body_entered"]
 [connection signal="body_entered" from="Enviornment/Player2Net" to="." method="_on_Player2Net_body_entered"]
