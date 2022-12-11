@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Paddle.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://sounds/beep.wav" type="AudioStream" id=10]
 [ext_resource path="res://art/background.png" type="Texture" id=11]
 [ext_resource path="res://sounds/music.mp3" type="AudioStream" id=12]
+[ext_resource path="res://Message.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 246.691, 4.58996 )
@@ -177,6 +178,16 @@ text = "Start"
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
 autoplay = true
+
+[node name="Message" parent="." instance=ExtResource( 13 )]
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 579.0
+margin_top = 635.0
+margin_right = 579.0
+margin_bottom = 635.0
+rect_pivot_offset = Vector2( 369, 154 )
 
 [connection signal="body_entered" from="Enviornment/Player1Net" to="." method="_on_Player1Net_body_entered"]
 [connection signal="body_entered" from="Enviornment/Player2Net" to="." method="_on_Player2Net_body_entered"]
